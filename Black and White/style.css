@@ -1,0 +1,198 @@
+/*  CSS Custom Properties */
+:root { --bg-color: pink }
+body  { 
+  background-color: #131313; 
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.head {
+/* create a circle   */
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+/* add some color */
+  border: 6px solid #e9960f;
+  background: radial-gradient(circle, rgba(255,230,53,1) 0%, rgba(233,150,15,1) 100%);
+  box-shadow: 4px 4px 36px 24px rgba(244,126,28,0.7) inset;
+
+  /* we need the position 'relative' b/s we're going to have a few elements inside the head. The elements will be positioned "absolutely" in releationship with the parent class (which is .head) */
+  position: relative;
+  
+/* we also need these 3 lines for the elements that are coming inside the .head (the eyes, cutouts, etc)   */
+  justify-content: center;
+  display:flex;
+  align-items: baseline;
+}
+
+.head::before {
+  content: "";
+  position: absolute;
+  
+  /* add mouth: https://bennettfeely.com/clippy/  */
+  width: 80px;
+  height: 80px;
+  clip-path: polygon(49% 0%, 100% 10%, 65% 48%, 100% 74%, 51% 100%, 77% 72%, 57% 46%, 81% 13%);
+  margin-top: 170px;
+  border-radius: 50%;
+  background-color: #492a0d;
+}
+
+.left, .right {
+  /* Common properties for both eyes   */
+  background: rgba(98,47,2,1);
+  border-radius: 50%;
+  border: 1px solid #492a0d;
+  position: absolute;
+  box-shadow: 1px 2px 8px 8px #492a0d inset;
+  
+  /* I'll keep these only for the left eye...   */
+  width: 50px;
+  height: 70px;
+  margin-top: 80px;
+  margin-left: -100px;
+}
+
+.right {
+  width: 65px;
+  height: 30px;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+/* for the eyebrows */
+.left::after, .right::after {
+  content: "";
+  position: absolute;
+  
+  clip-path: ellipse(50% 22% at 50% 100%);
+  border: 1px solid #492a0d;
+  width: 70px;
+  height: 60px;
+  background: rgba(98,47,2,1);
+  box-shadow: 1px 2px 8px 8px #492a0d inset;
+  margin-top: -80px;
+  
+  /* I'll keep these only for the left eyebrow...   */
+  margin-left: -50px;
+  transform: rotate(-25deg);
+  
+/* More info about rotation: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate   */
+}
+
+.right::after {
+  margin-left: 20px;
+  transform: rotate(10deg);
+}
+
+/* Here is a tutorial on how to create a heart -> https://programmersportal.com/how-to-create-a-heart-shape-using-css/
+
+If you don't want to create a heart you can always use the heart emoji!*/
+.heart {
+   /* Create the square and rotate it */
+   width: 80px;
+   height: 80px;
+   transform: rotate(75deg);
+   transform-origin: center;
+   position: relative;
+   background: #c51f22;
+   margin-top: 190px;
+   margin-left: -90px;
+  
+  animation: heartbeat 1.5s ease-in-out 2 both;
+}
+
+.heart::before, .heart::after {
+   content: '';
+   position: absolute;
+   
+   width: 80px;
+   height: 80px;
+   border-radius: 50%;
+   background: #c51f22;
+}
+
+.heart::before { left: -40px; }
+.heart::after { top: -40px; }
+
+
+/* Animation from: https://animista.net/play/attention/pulsate */
+@-webkit-keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+
+
+
